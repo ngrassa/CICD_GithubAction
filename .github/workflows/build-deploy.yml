@@ -26,7 +26,7 @@ jobs:
       # 3️⃣ Build de l'image Docker
       - name: Build Docker Image
         run: |
-          IMAGE_NAME=grassa77/myapp
+          IMAGE_NAME=grassa77/Gitomyapp
           TAG=${GITHUB_SHA::7}  # 7 premiers caractères du SHA du commit
           docker build -t $IMAGE_NAME:$TAG .
           docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest
@@ -34,7 +34,7 @@ jobs:
       # 4️⃣ Push vers Docker Hub
       - name: Push Docker Image
         run: |
-          IMAGE_NAME=grassa77/myapp
+          IMAGE_NAME=grassa77/Gitomyapp
           TAG=${GITHUB_SHA::7}
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
