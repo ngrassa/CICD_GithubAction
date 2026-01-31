@@ -86,7 +86,7 @@ jobs:
 
       - name: Update Kubernetes manifests
         run: |
-          sed -i "s|image: grassa77/gitomyapp:.*|image: grassa77/gitomyapp:${{ env.IMAGE_TAG }}|g" k8s/deployment.yaml
+          sed -i "s|image: ${{ secrets.DOCKER_USERNAME }}/gitomyapp:.*|image: ${{ secrets.DOCKER_USERNAME }}/gitomyapp:${{ env.IMAGE_TAG }}|g" k8s/deployment.yaml
 
       - name: Verify changes
         run: cat k8s/deployment.yaml
@@ -96,8 +96,8 @@ jobs:
           git config --global user.name "Nordine GRASSA"
           git config --global user.email "ngrassa@users.noreply.github.com"
           git add k8s/deployment.yaml
-          git commit -m "Update image to grassa77/gitomyapp:${{ env.IMAGE_TAG }}" || echo "No changes to commit"
+          git commit -m "Update image to ${{ secrets.DOCKER_USERNAME }}/gitomyapp:${{ env.IMAGE_TAG }}" || echo "No changes to commit"
           git push
 
       - name: Deploy completed
-        run: 'echo "Manifests updated with tag: ${{ env.IMAGE_TAG }}"'
+        run: 'echo "Manifests updated with latest tag: ${{ env.IMAGE_TAG }}"'
