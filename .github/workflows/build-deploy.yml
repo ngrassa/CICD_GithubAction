@@ -28,7 +28,7 @@ jobs:
           IMAGE_NAME=grassa77/gitomyapp
           TAG=${GITHUB_SHA::7}
           # chemin vers le Dockerfile et le contexte
-          docker build -t $IMAGE_NAME:$TAG -f docker/Dockerfile docker/
+          docker build -t $IMAGE_NAME:$TAG  .
           docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest
 
       - name: Push Docker Image
