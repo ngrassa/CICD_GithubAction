@@ -14,34 +14,18 @@ jobs:
     environment: testing
 
     steps:
-      - name: Set up job
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Pulling Git Repo
-        run: echo "Repository cloned successfully"
-
-      - name: Test Docker Installation
-        run: |
-          docker --version
-
-      - name: Show Dockerfile content
-        run: |
-          echo "=== Dockerfile content ==="
-          cat Dockerfile
-          echo "=== Hexdump first bytes ==="
-          hexdump -C Dockerfile | head -5
 
       - name: Docker Login
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest .
 
       - name: Push Docker Image
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest
 
-      - name: Noureddine GRASSA
+      - name: Build completed
         run: echo "Build and push completed by Noureddine GRASSA"
