@@ -68,7 +68,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gitomyapp:${{ env.IMAGE_TAG }}
 
       - name: Push completed
-        run: echo "Push completed - Image tag: ${{ env.IMAGE_TAG }}"
+        run: 'echo "Push completed - Image tag: ${{ env.IMAGE_TAG }}"'
 
   deploy:
     runs-on: ubuntu-latest
