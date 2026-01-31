@@ -100,4 +100,4 @@ jobs:
           git push
 
       - name: Deploy completed
-        run: echo "Manifests updated with tag: ${{ env.IMAGE_TAG }}"
+        run: 'echo "Manifests updated with tag: ${{ env.IMAGE_TAG }}"'
