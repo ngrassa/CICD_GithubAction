@@ -29,3 +29,11 @@ jobs:
 
       - name: Build completed
         run: echo "Build and push completed by Noureddine GRASSA"
+
+deploy:
+  run-on: ubuntu-latest
+  needs: [build]
+
+  steps:
+    - name: deploying stuff
+      run: echo "going to deploy soon" 
