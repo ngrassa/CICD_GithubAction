@@ -1,4 +1,4 @@
-name: Build and Deploy Code
+name: build-and-push
 
 on:
   push:
@@ -11,32 +11,25 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    environment: testing
 
     steps:
+      - name: Set up job
+        uses: actions/checkout@v4
+
       - name: Pulling Git Repo
-        uses: actions/checkout@v3
+        run: echo "Repository cloned successfully"
 
       - name: Docker Login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
         run: |
-          IMAGE_NAME=grassa77/gitomyapp
-          TAG=${GITHUB_SHA::7}
-          # chemin vers le Dockerfile et le contexte
-          docker build -t $IMAGE_NAME:$TAG  .
-          docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest .
 
       - name: Push Docker Image
         run: |
-          IMAGE_NAME=grassa77/gitomyapp
-          TAG=${GITHUB_SHA::7}
-          docker push $IMAGE_NAME:$TAG
-          docker push $IMAGE_NAME:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/gitomyapp:latest
 
       - name: Noureddine GRASSA
-        run: echo "Build et push Docker terminés pour le commit $GITHUB_SHA"
+        run: echo "Build and push completed by Noureddine GRASSA"
