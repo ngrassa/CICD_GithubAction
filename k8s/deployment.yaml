@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gitomyapp
-          image: grassa77/gitomyapp:2c2c0fe
+          image: grassa77/gitomyapp:0eaaea2
           ports:
             - containerPort: 80
 
