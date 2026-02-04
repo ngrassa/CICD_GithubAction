@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "⏳ Attente 10 secondes..."
-sleep 10
+echo "⏳ synchronisation en cours avec le repo local..."
+sleep 5
 git pull origin master
 echo "✅ Sync terminee !"
+git status

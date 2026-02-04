@@ -1,5 +1,6 @@
 @echo off
-echo ⏳ Attente 20 secondes...
-timeout /t 20 /nobreak
+echo ⏳ synchronisarion en cours...
+timeout /t 5 /nobreak
 git pull origin master
 echo ✅ Sync terminee !
+git status
