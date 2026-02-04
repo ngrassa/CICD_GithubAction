@@ -83,11 +83,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      # ⬇️ AJOUTÉ ICI - Pull pour avoir la dernière version
-      - name: Pull latest changes
-        run: git pull origin master --rebase
 
       - name: Update Kubernetes manifests
         run: |
